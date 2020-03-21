@@ -36,7 +36,9 @@ const AppBarComponent = props => {
         }}>
           About
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={() => {
+          window.location = "/login"
+        }}>Login</Button>
       </Toolbar>
     </AppBar>
   );
