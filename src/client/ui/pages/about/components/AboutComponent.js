@@ -6,19 +6,34 @@ import AppBarComponent from "../../../common/AppbarComponent";
 class AboutComponent extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      users: []
+    };
   }
 
   componentDidMount() {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts/1")
+      .get("https://jsonplaceholder.typicode.com/users")
       .then(response => {
-        console.log("response ------------", JSON.stringify(response, null, 2));
+        this.setState({
+          users: response.data
+        });
       })
       .catch(err => {
         console.log(err);
       });
   }
+
+  getUserDetaisView = () => {
+    let view = this.state.users.map((user, index) => (
+      <div key={index} style={{ border: "1px solid #e0dcdc",background: "#f7f5f5" }}>
+        <h1>{user.name}</h1>
+        <p>{user.email}</p>
+        <p>{user.phone}</p>
+      </div>
+    ));
+    return view;
+  };
 
   componentWillReceiveProps(nextProps) {}
 
@@ -26,23 +41,7 @@ class AboutComponent extends React.Component {
     return (
       <div>
         <AppBarComponent />
-        <div
-          style={{
-            display: "inline-block",
-            position: "fixed",
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            width: "200px",
-            height: "100px",
-            margin: "auto",
-            backgroundColor: "#f3f3f3",
-            fontSize: "25px"
-          }}
-        >
-          About page
-        </div>
+        {this.getUserDetaisView()}
       </div>
     );
   }

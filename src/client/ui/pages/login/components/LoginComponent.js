@@ -7,23 +7,38 @@ class LoginComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      userName: "",
+      email: "",
       password: ""
     };
   }
 
-  handleChange = input => event => {
+  onEmailChange = event => {
     this.setState({
-      [input]: event.target.value
+      email: event.target.value
     });
   };
+
+  onPasswordChange = event => {
+    this.setState({
+      password: event.target.value
+    });
+  };
+
+  onLoginClieck = () => {
+    alert("Login button clicked ---- !!!! ");
+  };
+
   render() {
-    const { userName, password } = this.state;
-    const values = { userName, password };
     return (
       <div>
-        <AppBarComponent />
-        <LoginFormComponent handleChange={this.handleChange} values={values} />
+        <div>
+          <AppBarComponent />
+          <LoginFormComponent
+            onEmailChange={this.onEmailChange}
+            onPasswordChange={this.onPasswordChange}
+            onLoginClieck={this.onLoginClieck}
+          />
+        </div>
       </div>
     );
   }
