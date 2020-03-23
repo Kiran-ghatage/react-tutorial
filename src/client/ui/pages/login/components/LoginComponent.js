@@ -1,4 +1,6 @@
 import React from "react";
+import validator from "validator";
+
 import AppBarComponent from "../../../common/AppbarComponent";
 import LoginFormComponent from "../../../common/LoginFormComponent";
 import AlertComponent from "../../../common/AlertComponent";
@@ -8,14 +10,22 @@ class LoginComponent extends React.Component {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      emailErrorLabel: ""
     };
   }
 
   onEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    });
+    let isItValidEmail = validator.isEmail(event.target.value); //=> true    
+    if (isItValidEmail) {
+      this.setState({
+        email: event.target.value,
+      });
+    } else {
+      this.setState({
+        emailErrorLabel: "Please Enter valid email....!!!!!"
+      })
+    }
   };
 
   onPasswordChange = event => {
@@ -25,7 +35,11 @@ class LoginComponent extends React.Component {
   };
 
   onLoginClieck = () => {
-    alert("Login button clicked ---- !!!! ");
+    if (this.state.email && this.state.password) {
+      alert("Please enter email nad password");
+    } else {
+      alert("Login button clicked ---- !!!! ");
+    }
   };
 
   render() {
@@ -37,6 +51,8 @@ class LoginComponent extends React.Component {
             onEmailChange={this.onEmailChange}
             onPasswordChange={this.onPasswordChange}
             onLoginClieck={this.onLoginClieck}
+            emailErrorMsg={this.state.emailErrorMsg}
+            emailErrorLabel={this.state.emailErrorLabel}
           />
         </div>
       </div>
