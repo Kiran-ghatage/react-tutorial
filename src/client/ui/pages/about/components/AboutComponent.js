@@ -43,15 +43,6 @@ class AboutComponent extends React.Component {
           </div>
         }
       />
-      // <div
-      //   className="col-lg-4 col-md-4 col-sm-6 col-xs-12"
-      //   key={index}
-      //   style={{ border: "1px solid #e0dcdc", background: "#f7f5f5", float: "left" }}
-      // >
-      //   <h1>{user.name}</h1>
-      //   <p>{user.email}</p>
-      //   <p>{user.phone}</p>
-      // </div>
     ));
     return view;
   };
@@ -62,7 +53,7 @@ class AboutComponent extends React.Component {
     return (
       <div>
         <AppBarComponent />
-        <div className="row" style={{float: "left", margin: "20px"}}>
+        <div className="row" style={{ float: "left", margin: "20px" }}>
           {this.getUserDetaisView()}
         </div>
       </div>

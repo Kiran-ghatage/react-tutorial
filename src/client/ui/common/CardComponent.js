@@ -10,15 +10,14 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: "23%",
-    maxWidth: "23%",
+    maxWidth: "23.5%",
+    minWidth: "23.5%",
     margin: "10px"
   }
 });
 
-export default function ImgMediaCard(props) {
+const CardComponent = props => {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -29,11 +28,11 @@ export default function ImgMediaCard(props) {
           image="https://png.pngtree.com/png-clipart/20190922/original/pngtree-business-male-user-avatar-vector-png-image_4774078.jpg"
           title="Contemplative Reptile"
         />
-        <CardContent>
-          {props.contentView}
-        </CardContent>
+        <CardContent>{props.contentView}</CardContent>
       </CardActionArea>
       <CardActions>{props.actions}</CardActions>
     </Card>
   );
-}
+};
+
+export default CardComponent;

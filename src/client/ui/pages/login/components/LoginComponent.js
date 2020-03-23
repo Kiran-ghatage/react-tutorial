@@ -11,21 +11,27 @@ class LoginComponent extends React.Component {
     this.state = {
       email: "",
       password: "",
-      emailErrorLabel: ""
+      emailErrorMsg: "",
+      isItValidEmail: false
     };
   }
 
   onEmailChange = event => {
-    let isItValidEmail = validator.isEmail(event.target.value); //=> true    
-    if (isItValidEmail) {
+    let isItValidEmail = validator.isEmail(event.target.value); //=> true
+
+    if(isItValidEmail) {
       this.setState({
-        email: event.target.value,
+        email: event.target.value
       });
-    } else {
+    }
+    else{
       this.setState({
-        emailErrorLabel: "Please Enter valid email....!!!!!"
+        emailErrorMsg: "Enter valid email....",
+        isItValidEmail: isItValidEmail
       })
     }
+
+    
   };
 
   onPasswordChange = event => {
@@ -52,7 +58,6 @@ class LoginComponent extends React.Component {
             onPasswordChange={this.onPasswordChange}
             onLoginClieck={this.onLoginClieck}
             emailErrorMsg={this.state.emailErrorMsg}
-            emailErrorLabel={this.state.emailErrorLabel}
           />
         </div>
       </div>

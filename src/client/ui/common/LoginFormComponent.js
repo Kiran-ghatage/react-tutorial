@@ -87,7 +87,7 @@ function LoginForm(props) {
               autoComplete="email"
               autoFocus
               onClick={props.onEmailChange}
-              helperText={props.emailErrorLabel}
+              helperText={props.emailErrorMsg}
             />
             <TextField
               variant="outlined"
