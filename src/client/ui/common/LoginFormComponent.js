@@ -86,8 +86,9 @@ function LoginForm(props) {
               name="email"
               autoComplete="email"
               autoFocus
-              onClick={props.onEmailChange}
-              helperText={props.emailErrorMsg}
+              onChange={props.onEmailChange}
+              helperText={props.errorMsgs.emailErrorMsg}
+              error={props.errorMsgs.emailErrorMsg ? props.errorMsgs.emailErrorMsg : false}
             />
             <TextField
               variant="outlined"
@@ -99,19 +100,21 @@ function LoginForm(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              onClick={props.onPasswordChange}
+              onChange={props.onPasswordChange}
+              helperText={props.errorMsgs.passwordErrorMsg}
+              error={props.errorMsgs.passwordErrorMsg ? props.errorMsgs.passwordErrorMsg : false}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              type="submit"
+            //   type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={props.onLoginClieck}
+              onClick={props.onLoginButtonClick}
             >
               Sign In
             </Button>

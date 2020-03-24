@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import AppBarComponent from "../../../common/AppbarComponent";
 import CardComponent from "../../../common/CardComponent";
 
-class AboutComponent extends React.Component {
+class LandingPageComponent extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -16,7 +16,7 @@ class AboutComponent extends React.Component {
       <div>
         <AppBarComponent />
         <div className="row" style={{ margin: "20px" }}>
-          <h1>About React Tutorial</h1>
+          <h1>React Tutorial</h1>
           We will build a small game during this tutorial. You might be tempted
           to skip it because you’re not building games — but give it a chance.
           The techniques you’ll learn in the tutorial are fundamental to
@@ -28,4 +28,4 @@ class AboutComponent extends React.Component {
   }
 }
 
-export default AboutComponent;
+export default LandingPageComponent;

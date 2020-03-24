@@ -3,7 +3,9 @@ import validator from "validator";
 
 import AppBarComponent from "../../../common/AppbarComponent";
 import LoginFormComponent from "../../../common/LoginFormComponent";
+import DailogBoxComponent from "../../../common/DailogBoxComponent";
 import AlertComponent from "../../../common/AlertComponent";
+import LOCALIZED_STRINGS from "../constants/loginConstatnts";
 
 class LoginComponent extends React.Component {
   constructor() {
@@ -11,43 +13,68 @@ class LoginComponent extends React.Component {
     this.state = {
       email: "",
       password: "",
-      emailErrorMsg: "",
-      isItValidEmail: false
+      isItValidEmail: false,
+      errorMsgs: {
+        emailErrorMsg: "",
+        passwordErrorMsg: ""
+      },
+      isAlertOpen: false,
+      alertMsg: ""
     };
   }
 
   onEmailChange = event => {
     let isItValidEmail = validator.isEmail(event.target.value); //=> true
-
-    if(isItValidEmail) {
+    if (isItValidEmail) {
       this.setState({
-        email: event.target.value
+        email: event.target.value,
+        errorMsgs: {
+          emailErrorMsg: ""
+        }
+      });
+    } else {
+      this.setState({
+        errorMsgs: {
+          emailErrorMsg: LOCALIZED_STRINGS.INVALID_EMAIL_MESSAGE
+        }
       });
     }
-    else{
-      this.setState({
-        emailErrorMsg: "Enter valid email....",
-        isItValidEmail: isItValidEmail
-      })
-    }
-
-    
   };
 
   onPasswordChange = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  onLoginClieck = () => {
-    if (this.state.email && this.state.password) {
-      alert("Please enter email nad password");
+    if (event.target.value) {
+      this.setState({
+        password: event.target.value,
+        errorMsgs: {
+          passwordErrorMsg: ""
+        }
+      });
     } else {
-      alert("Login button clicked ---- !!!! ");
+      this.setState({
+        errorMsgs: {
+          passwordErrorMsg: LOCALIZED_STRINGS.INVALID_PASSWORD_MESSAGE
+        }
+      });
     }
   };
 
+  onLoginButtonClick = () => {
+    if (this.state.email === "" && this.state.password === "") {
+      alert(LOCALIZED_STRINGS.INVALID_EMAIL_PASSWORD_MESSAGE);
+    } else {
+      this.setState({
+        isAlertOpen: true,
+        alertMsg: "Successfully Logged In ...!"
+      });
+    }
+  };
+
+  onAlertClose = () => {
+    this.setState({
+      isAlertOpen: false,
+      alertMsg: ""
+    });
+  };
   render() {
     return (
       <div>
@@ -56,10 +83,15 @@ class LoginComponent extends React.Component {
           <LoginFormComponent
             onEmailChange={this.onEmailChange}
             onPasswordChange={this.onPasswordChange}
-            onLoginClieck={this.onLoginClieck}
-            emailErrorMsg={this.state.emailErrorMsg}
+            onLoginButtonClick={this.onLoginButtonClick}
+            errorMsgs={this.state.errorMsgs}
           />
         </div>
+        <DailogBoxComponent
+          open={this.state.isAlertOpen}
+          dailogBoxText={this.state.alertMsg}
+          onDailogBoxClose={this.onAlertClose}
+        />
       </div>
     );
   }

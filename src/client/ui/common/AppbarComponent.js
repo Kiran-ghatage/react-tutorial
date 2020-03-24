@@ -15,7 +15,9 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    // flexGrow: 1,
+    float: "left",
+    padding: "10px"
   }
 }));
 const AppBarComponent = props => {
@@ -23,22 +25,44 @@ const AppBarComponent = props => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          {/* <MenuIcon /> */}
-        </IconButton>
-        <Typography variant="h6" className={classes.title}  onClick={() => {
-          window.location = "/about"
-        }}>
-          About
-        </Typography>
-        <Button color="inherit" onClick={() => {
-          window.location = "/login"
-        }}>Login</Button>
+        <div className="col-lg-11 col-md-11 col-sm-8 col-xs-12">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            {/* <MenuIcon /> */}
+          </IconButton>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            onClick={() => {
+              window.location = "/about";
+            }}
+          >
+            About
+          </Typography>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            onClick={() => {
+              window.location = "/users";
+            }}
+          >
+            Users
+          </Typography>
+        </div>
+        <div className="pull-right">
+          <Button
+            color="inherit"
+            onClick={() => {
+              window.location = "/login";
+            }}
+          >
+            Login
+          </Button>
+        </div>
       </Toolbar>
     </AppBar>
   );
