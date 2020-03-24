@@ -13,7 +13,6 @@ class LoginComponent extends React.Component {
     this.state = {
       email: "",
       password: "",
-      isItValidEmail: false,
       errorMsgs: {
         emailErrorMsg: "",
         passwordErrorMsg: ""
@@ -21,11 +20,12 @@ class LoginComponent extends React.Component {
       isAlertOpen: false,
       alertMsg: ""
     };
+    this.isItValidEmail = false;
   }
 
   onEmailChange = event => {
-    let isItValidEmail = validator.isEmail(event.target.value); //=> true
-    if (isItValidEmail) {
+    this.isItValidEmail = validator.isEmail(event.target.value); //=> true
+    if (this.isItValidEmail) {
       this.setState({
         email: event.target.value,
         errorMsgs: {
@@ -61,6 +61,11 @@ class LoginComponent extends React.Component {
   onLoginButtonClick = () => {
     if (this.state.email === "" && this.state.password === "") {
       alert(LOCALIZED_STRINGS.INVALID_EMAIL_PASSWORD_MESSAGE);
+    } else if (!this.isItValidEmail) {
+      this.setState({
+        isAlertOpen: true,
+        alertMsg: LOCALIZED_STRINGS.INVALID_EMAIL_MESSAGE
+      });
     } else {
       this.setState({
         isAlertOpen: true,
@@ -76,18 +81,22 @@ class LoginComponent extends React.Component {
     });
   };
   render() {
+    const onChangeCallBacks = {
+      onEmailChange: this.onEmailChange,
+      onPasswordChange: this.onPasswordChange
+    };
     return (
       <div>
-          <AppBarComponent />
-          <div style={{margin: "2px 0px"}}>
-            <LoginFormComponent
-              onEmailChange={this.onEmailChange}
-              onPasswordChange={this.onPasswordChange}
-              onLoginButtonClick={this.onLoginButtonClick}
-              errorMsgs={this.state.errorMsgs}
-            />
-          </div>
-        <DailogBoxComponent
+        <AppBarComponent />
+        <div style={{ margin: "2px 0px" }}>
+          <LoginFormComponent
+            onEmailChange={this.onEmailChange}
+            onChangeCallBacks={onChangeCallBacks}
+            errorMsgs={this.state.errorMsgs}
+            onLoginButtonClick={this.onLoginButtonClick}
+          />
+        </div>
+        <AlertComponent
           open={this.state.isAlertOpen}
           dailogBoxText={this.state.alertMsg}
           onDailogBoxClose={this.onAlertClose}

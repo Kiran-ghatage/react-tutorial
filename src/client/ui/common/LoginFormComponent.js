@@ -86,9 +86,13 @@ function LoginForm(props) {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={props.onEmailChange}
+              onChange={props.onChangeCallBacks.onEmailChange}
               helperText={props.errorMsgs.emailErrorMsg}
-              error={props.errorMsgs.emailErrorMsg ? props.errorMsgs.emailErrorMsg : false}
+              error={
+                props.errorMsgs.emailErrorMsg
+                  ? props.errorMsgs.emailErrorMsg
+                  : false
+              }
             />
             <TextField
               variant="outlined"
@@ -100,16 +104,20 @@ function LoginForm(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={props.onPasswordChange}
+              onChange={props.onChangeCallBacks.onPasswordChange}
               helperText={props.errorMsgs.passwordErrorMsg}
-              error={props.errorMsgs.passwordErrorMsg ? props.errorMsgs.passwordErrorMsg : false}
+              error={
+                props.errorMsgs.passwordErrorMsg
+                  ? props.errorMsgs.passwordErrorMsg
+                  : false
+              }
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-            //   type="submit"
+              //   type="submit"
               fullWidth
               variant="contained"
               color="primary"
