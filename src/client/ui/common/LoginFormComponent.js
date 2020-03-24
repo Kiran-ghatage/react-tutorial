@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      "url(https://images.pexels.com/photos/374811/pexels-photo-374811.jpeg?cs=srgb&dl=architectural-design-architecture-buildings-city-374811.jpg&fm=jpg)",
+      "url(https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"

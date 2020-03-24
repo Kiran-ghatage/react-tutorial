@@ -78,15 +78,15 @@ class LoginComponent extends React.Component {
   render() {
     return (
       <div>
-        <div>
           <AppBarComponent />
-          <LoginFormComponent
-            onEmailChange={this.onEmailChange}
-            onPasswordChange={this.onPasswordChange}
-            onLoginButtonClick={this.onLoginButtonClick}
-            errorMsgs={this.state.errorMsgs}
-          />
-        </div>
+          <div style={{margin: "2px 0px"}}>
+            <LoginFormComponent
+              onEmailChange={this.onEmailChange}
+              onPasswordChange={this.onPasswordChange}
+              onLoginButtonClick={this.onLoginButtonClick}
+              errorMsgs={this.state.errorMsgs}
+            />
+          </div>
         <DailogBoxComponent
           open={this.state.isAlertOpen}
           dailogBoxText={this.state.alertMsg}
