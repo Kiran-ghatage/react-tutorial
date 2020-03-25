@@ -5,7 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,52 +16,67 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    // flexGrow: 1,
+    flexGrow: 1,
     float: "left",
-    padding: "10px"
+    padding: "0px 10px",
+    color: "#ffffff"
+  },
+  userButton: {
+    color: "red"
   }
 }));
 const AppBarComponent = props => {
   const classes = useStyles();
+  const [isAuthenticatedUser, setIsAuthenticatedUser] = React.useState(
+    localStorage.getItem("isAuthenticatedUser")
+  );
+  const menuItemsView = (
+    <div style={{ width: "97%" }}>
+      <Typography
+        variant="h6"
+        className={classes.title}
+        onClick={() => {
+          window.location = "/about";
+        }}
+      >
+        About
+      </Typography>
+      <Typography
+        variant="h6"
+        className={classes.title}
+        onClick={() => {
+          window.location = "/users";
+        }}
+      >
+        Users
+      </Typography>
+    </div>
+  );
+
+  const login = () => {
+    window.location = "/login";
+  };
+  const logout = () => {
+    setIsAuthenticatedUser(false);
+    localStorage.setItem("isAuthenticatedUser", false);
+    window.location = "/";
+  };
+
   return (
-    <AppBar position="static">
+    <AppBar
+      color={props.color ? props.color : "transparent"}
+      style={props.appBarStyle ? props.appBarStyle : { position: "static", background:
+      'linear-gradient(to right, #00467f, #a5cc82)',}}
+    >
+      {/* linear-gradient(to right, #00467f, #a5cc82); */}
       <Toolbar>
-        <div className="col-lg-11 col-md-11 col-sm-8 col-xs-12">
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            onClick={() => {
-              window.location = "/about";
-            }}
-          >
-            About
-          </Typography>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            onClick={() => {
-              window.location = "/users";
-            }}
-          >
-            Users
-          </Typography>
-        </div>
+        {props.menuItemsView ? props.menuItemsView : menuItemsView}
         <div className="pull-right">
           <Button
             color="inherit"
-            onClick={() => {
-              window.location = "/login";
-            }}
+            onClick={isAuthenticatedUser === "true" ? logout : login}
           >
-            Login
+            {isAuthenticatedUser === "true" ? "Logout" : "Login"}
           </Button>
         </div>
       </Toolbar>

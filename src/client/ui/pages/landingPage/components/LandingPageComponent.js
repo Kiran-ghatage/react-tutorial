@@ -3,18 +3,22 @@ import axios from "axios";
 import Typography from "@material-ui/core/Typography";
 
 import AppBarComponent from "../../../common/AppbarComponent";
-import CardComponent from "../../../common/CardComponent";
+import LogoComponent from "../../../common/LogoComponent";
 
 class LandingPageComponent extends React.Component {
   constructor() {
     super();
     this.state = {};
   }
-
+  
   render() {
     return (
       <div>
-        <AppBarComponent />
+        <AppBarComponent
+          menuItemsView={<LogoComponent />}
+          color="primary"
+          appBarStyle={{ position: "static" }}
+        />
         <div className="row" style={{ margin: "20px" }}>
           <h1>React Tutorial</h1>
           We will build a small game during this tutorial. You might be tempted

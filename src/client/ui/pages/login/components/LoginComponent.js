@@ -2,10 +2,13 @@ import React from "react";
 import validator from "validator";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import AppBarComponent from "../../../common/AppbarComponent";
 import LoginFormComponent from "../../../common/LoginFormComponent";
 import AlertComponent from "../../../common/AlertComponent";
+import LogoComponent from "../../../common/LogoComponent";
+
 import LOCALIZED_STRINGS from "../constants/loginConstatnts";
 
 class LoginComponent extends React.Component {
@@ -69,11 +72,8 @@ class LoginComponent extends React.Component {
         alertMsg: LOCALIZED_STRINGS.INVALID_EMAIL_MESSAGE
       });
     } else {
-      this.setState({
-        isAlertOpen: true,
-        alertMsg: LOCALIZED_STRINGS.LOGIN_SUCCESS_MESSAGE,
-        alertTitle: "Login"
-      });
+      localStorage.setItem("isAuthenticatedUser", true);
+      window.location = "/dashboard";
     }
   };
 
@@ -94,6 +94,7 @@ class LoginComponent extends React.Component {
     );
     return actions;
   };
+
   render() {
     const onChangeCallBacks = {
       onEmailChange: this.onEmailChange,
@@ -101,7 +102,11 @@ class LoginComponent extends React.Component {
     };
     return (
       <div>
-        <AppBarComponent />
+        <AppBarComponent
+          menuItemsView={<LogoComponent />}
+          color="primary"
+          appBarStyle={{ position: "static" }}
+        />{" "}
         <div style={{ margin: "2px 0px" }}>
           <LoginFormComponent
             onEmailChange={this.onEmailChange}
