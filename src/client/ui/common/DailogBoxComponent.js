@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 const DailogBoxComponent = props => {
   const [open, setOpen] = React.useState(false);
-
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -25,13 +25,6 @@ const DailogBoxComponent = props => {
         color="primary"
       >
         Ok
-      </Button>
-      <Button
-        onClick={props.onDailogBoxClose ? props.onDailogBoxClose : handleClose}
-        color="primary"
-        autoFocus
-      >
-        Cancel
       </Button>
     </div>
   );
@@ -52,7 +45,7 @@ const DailogBoxComponent = props => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {props.dailogBoxActions ? props.dailogBoxActions : actions}
+          {props.dailogBoxActions ? props.dailogBoxActions() : actions}
         </DialogActions>
       </Dialog>
     </div>

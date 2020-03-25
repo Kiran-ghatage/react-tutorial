@@ -8,7 +8,9 @@ const AlertComponent = props => {
       <DailogBoxComponent
         open={props.open}
         dailogBoxText={props.dailogBoxText}
+        dailogBoxTitle={props.dailogBoxTitle}
         onDailogBoxClose={props.onDailogBoxClose}
+        dailogBoxActions={props.alertActions}
       />{" "}
     </div>
   );

@@ -1,9 +1,10 @@
 import React from "react";
 import validator from "validator";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 
 import AppBarComponent from "../../../common/AppbarComponent";
 import LoginFormComponent from "../../../common/LoginFormComponent";
-import DailogBoxComponent from "../../../common/DailogBoxComponent";
 import AlertComponent from "../../../common/AlertComponent";
 import LOCALIZED_STRINGS from "../constants/loginConstatnts";
 
@@ -18,7 +19,8 @@ class LoginComponent extends React.Component {
         passwordErrorMsg: ""
       },
       isAlertOpen: false,
-      alertMsg: ""
+      alertMsg: "",
+      alertTitle: ""
     };
     this.isItValidEmail = false;
   }
@@ -69,7 +71,8 @@ class LoginComponent extends React.Component {
     } else {
       this.setState({
         isAlertOpen: true,
-        alertMsg: "Successfully Logged In ...!"
+        alertMsg: LOCALIZED_STRINGS.LOGIN_SUCCESS_MESSAGE,
+        alertTitle: "Login"
       });
     }
   };
@@ -79,6 +82,17 @@ class LoginComponent extends React.Component {
       isAlertOpen: false,
       alertMsg: ""
     });
+  };
+
+  alertActions = () => {
+    const actions = (
+      <div>
+        <Button onClick={this.onAlertClose} color="primary">
+          Ok
+        </Button>
+      </div>
+    );
+    return actions;
   };
   render() {
     const onChangeCallBacks = {
@@ -99,7 +113,9 @@ class LoginComponent extends React.Component {
         <AlertComponent
           open={this.state.isAlertOpen}
           dailogBoxText={this.state.alertMsg}
+          dailogBoxTitle={this.state.alertTitle}
           onDailogBoxClose={this.onAlertClose}
+          alertActions={this.alertActions}
         />
       </div>
     );

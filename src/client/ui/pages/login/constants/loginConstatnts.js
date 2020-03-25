@@ -5,6 +5,8 @@ const LOCALIZED_STRINGS = {
     "Please enter valid Password.",
     INVALID_EMAIL_MESSAGE:
     "Please enter valid Email.",
+    LOGIN_SUCCESS_MESSAGE:
+    "Successfully Logged In",
 };
 
 export default LOCALIZED_STRINGS;
