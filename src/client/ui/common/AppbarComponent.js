@@ -66,7 +66,7 @@ const AppBarComponent = props => {
     <AppBar
       color={props.color ? props.color : "transparent"}
       style={props.appBarStyle ? props.appBarStyle : { position: "static", background:
-      'linear-gradient(to right, #00467f, #a5cc82)',}}
+      'linear-gradient(to right, #3e51b5 3%, #9999ff 100%)',}}
     >
       {/* linear-gradient(to right, #00467f, #a5cc82); */}
       <Toolbar>
@@ -75,6 +75,7 @@ const AppBarComponent = props => {
           <Button
             color="inherit"
             onClick={isAuthenticatedUser === "true" ? logout : login}
+            style={{color: "#FFFFFF"}}
           >
             {isAuthenticatedUser === "true" ? "Logout" : "Login"}
           </Button>
