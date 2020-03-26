@@ -10,10 +10,13 @@ const CarouselComponent = props => {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect}
+    fade={false}
+    controls={false}
+    >
       {props.items.map((item, index) => (
         <Carousel.Item>
-          <img className="d-block w-100" src={item.imgSrc} alt={item.alt} />
+          <img className="d-block w-100" height="600px" src={item.imgSrc} alt={item.alt} />
           <Carousel.Caption>
             <h3>{item.caption}</h3>
             <p>{item.deatis}</p>

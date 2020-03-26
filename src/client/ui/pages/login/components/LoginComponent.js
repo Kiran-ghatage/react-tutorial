@@ -104,8 +104,8 @@ class LoginComponent extends React.Component {
       <div>
         <AppBarComponent
           menuItemsView={<LogoComponent />}
-          color="primary"
-          appBarStyle={{ position: "static" }}
+          color="transparent"
+          appBarStyle={{ position: "fixed", boxShadow: "none" }}
         />{" "}
         <div style={{ margin: "2px 0px" }}>
           <LoginFormComponent

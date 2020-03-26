@@ -75,7 +75,6 @@ const AppBarComponent = props => {
           <Button
             color="inherit"
             onClick={isAuthenticatedUser === "true" ? logout : login}
-            style={{color: "#FFFFFF"}}
           >
             {isAuthenticatedUser === "true" ? "Logout" : "Login"}
           </Button>

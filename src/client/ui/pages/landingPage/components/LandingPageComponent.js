@@ -6,30 +6,17 @@ import Carousel from "react-bootstrap/Carousel";
 import AppBarComponent from "../../../common/AppbarComponent";
 import CarouselComponent from "../../../common/CarouselComponent";
 import LogoComponent from "../../../common/LogoComponent";
-
-const imageStyle = { objectFit: "contain", width: "100%", padding: "10px" };
-const aboutHeaderStyle = { fontSize: "24px", color: "#3e51b5" };
-const aboutTextStyle = { fontSize: "16px", color: "#444444" };
+import LOCALIZED_STRINGS from "../constants/landingPageConstatnts";
+import {
+  imageStyle,
+  aboutHeaderStyle,
+  aboutTextStyle
+} from "../styles/landingPageComponentStyles";
 
 const logoUrl =
-  "https://images.pexels.com/photos/722218/pexels-photo-722218.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+  "https://images.pexels.com/photos/3877443/pexels-photo-3877443.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
-const CarouselItems = [
-  {
-    imgSrc:
-      "https://images.pexels.com/photos/959813/pexels-photo-959813.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    alt: "caroucelImg1",
-    caption: "First slide label",
-    deatis: "Nulla vitae elit libero, a pharetra augue mollis interdum."
-  },
-  {
-    imgSrc:
-      "https://images.pexels.com/photos/1092063/pexels-photo-1092063.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    alt: "caroucelImg1",
-    caption: "Second slide label",
-    deatis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  }
-];
+const CarouselItems = LOCALIZED_STRINGS.CarouselItems;
 class LandingPageComponent extends React.Component {
   constructor() {
     super();
