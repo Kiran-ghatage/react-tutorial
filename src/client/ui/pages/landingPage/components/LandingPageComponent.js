@@ -41,6 +41,8 @@ class LandingPageComponent extends React.Component {
           menuItemsView={<LogoComponent />}
           color="transparent"
           appBarStyle={{ position: "fixed", boxShadow: "none" }}
+          LogOutTextStyle={{color: "#FFFFFF"}}
+          LogInTextStyle={{color: "#FFFFFF"}}
         />
         <CarouselComponent
           items={CarouselItems}

@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 import AppBarComponent from "../../../common/AppbarComponent";
 import CardComponent from "../../../common/CardComponent";
+// import { fetchUsers } from "../../../../actions/userActions";
 
 class UsersComponent extends React.Component {
   constructor() {

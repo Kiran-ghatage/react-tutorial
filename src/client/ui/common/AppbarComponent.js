@@ -30,6 +30,8 @@ const AppBarComponent = props => {
   const [isAuthenticatedUser, setIsAuthenticatedUser] = React.useState(
     localStorage.getItem("isAuthenticatedUser")
   );
+  console.log('props ------AppBarComponent------', props);
+  
   const menuItemsView = (
     <div style={{ width: "97%" }}>
       <Typography
@@ -65,8 +67,14 @@ const AppBarComponent = props => {
   return (
     <AppBar
       color={props.color ? props.color : "transparent"}
-      style={props.appBarStyle ? props.appBarStyle : { position: "static", background:
-      'linear-gradient(to right, #3e51b5 3%, #9999ff 100%)',}}
+      style={
+        props.appBarStyle
+          ? props.appBarStyle
+          : {
+              position: "static",
+              background: "linear-gradient(to right, #3e51b5 3%, #9999ff 100%)"
+            }
+      }
     >
       {/* linear-gradient(to right, #00467f, #a5cc82); */}
       <Toolbar>
@@ -76,7 +84,11 @@ const AppBarComponent = props => {
             color="inherit"
             onClick={isAuthenticatedUser === "true" ? logout : login}
           >
-            {isAuthenticatedUser === "true" ? "Logout" : "Login"}
+            {isAuthenticatedUser === "true" ? (
+              <p style={props.LogOutTextStyle}>Logout</p>
+            ) : (
+              <p style={props.LogInTextStyle}>Login</p>
+            )}
           </Button>
         </div>
       </Toolbar>
