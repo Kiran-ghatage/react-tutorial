@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import AppBarComponent from "../../../common/AppbarComponent";
 import CardComponent from "../../../common/CardComponent";
-// import { fetchUsers } from "../../../../actions/userActions";
+import { fetchUsers } from "../../../../actions/userActions";
 
 class UsersComponent extends React.Component {
   constructor() {
@@ -15,16 +17,13 @@ class UsersComponent extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then(response => {
-        this.setState({
-          users: response.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.fetchUsers();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      users: nextProps.users
+    });
   }
 
   getUserDetaisView = () => {
@@ -48,8 +47,6 @@ class UsersComponent extends React.Component {
     return view;
   };
 
-  componentWillReceiveProps(nextProps) {}
-
   render() {
     return (
       <div>
@@ -62,4 +59,19 @@ class UsersComponent extends React.Component {
   }
 }
 
-export default UsersComponent;
+const mapStateToProps = state => {
+  return {
+    users: state.userInfo.users
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      fetchUsers
+    },
+    dispatch
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersComponent);

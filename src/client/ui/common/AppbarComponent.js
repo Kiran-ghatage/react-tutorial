@@ -29,9 +29,7 @@ const AppBarComponent = props => {
   const classes = useStyles();
   const [isAuthenticatedUser, setIsAuthenticatedUser] = React.useState(
     localStorage.getItem("isAuthenticatedUser")
-  );
-  console.log('props ------AppBarComponent------', props);
-  
+  );  
   const menuItemsView = (
     <div style={{ width: "97%" }}>
       <Typography
